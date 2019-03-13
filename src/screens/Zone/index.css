@@ -1,0 +1,47 @@
+#content {
+    color: red;
+    display: inline;
+    grid-area: content;
+}
+#main {
+    display: grid;
+    grid-template-rows: auto, 1fr, 1fr;
+    grid-template-columns: 1fr, 1fr, 1fr;
+    grid-template-areas:
+        ".... head head"
+        "nav content content"
+        "foot foot foot";
+}
+header {
+    grid-area: head;
+    background-color: black;
+    color: white;
+}
+nav {
+    grid-area: nav;
+    background-color: gainsboro;
+}
+footer {
+    grid-area: foot;
+    color: white;
+    background-color: black;
+}
+.zones {
+    color: darkorange;
+    border: 1px;
+    padding: 5px;
+    margin: 5px;
+}
+.zones:hover {
+    /*color: white;*/
+    color: darkorange;
+    background-clip: padding-box;
+    border: 1px;
+    border-color: darkorange;
+    border-style: solid;
+    /*background-color: darkorange;*/
+    border-radius: 5%;
+    padding: 5px;
+    margin: 5px;
+    /*margin: 0px;*/
+}

@@ -1,14 +1,120 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+#content {
+    color: red;
+    display: flex;
+    grid-area: content;
+    justify-self: stretch;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+#list-view {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+    width: 100%;
+    height: 100%;
+    justify-content: space-evenly;
+    grid-template-areas: 
+        ".... list-controls ..."
+        "list-items list-items list-items";
+}
+#list-items {
+    display: flex;
+    grid-area: list-items;
+    flex-wrap: wrap;
+    align-content: start;
+}
+#list-view,button {
+    grid-area: list-controls;
+}
+#main {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: auto 4fr;
+    grid-gap: 10px;
+    justify-content: stretch;
+    align-content: stretch;
+    width: 100vw;
+    height: 100vh;
+    grid-template-areas:
+        "... head"
+        "nav content"
+        "foot foot";
+}
+header {
+    grid-area: head;
+    background-color: white;
+    color: darkorange;
+    padding: 10px;
+    justify-self: start;
+}
+nav {
+    grid-area: nav;
+    background-color: #fff7ef;
+    color: darkorange;
+    padding: 5px;
+    padding-right: 50px;
+    padding-left: 5px;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-top-style: solid;
+    border-top-width: 1px;
+
+    align-self: stretch;
+}
+a:link,a:visited {
+    color: darkorange;
+    text-decoration: none;
+}
+a:hover,a:active {
+    text-decoration: underline;
+}
+footer {
+    grid-area: foot;
+    color: darkorange;
+    background-color: white;
+    justify-self: center;
+    align-self: end;
+    border-top-color: darkorange;
+    border-top-width: 1px;
+    border-top-style: solid;
+}
+.zones {
+    color: darkorange;
+    border-radius: 5px;
+    border: 0px;
+    padding: 10px;
+    margin: 10px;
+    border-style: solid;
+    border-color: darkorange;
+    text-align: center;
+    height: 40px;
+    background-color: #fff7ef;
+
+}
+.zones:hover {
+    text-decoration: underline;
+}
+button {
+    background-color: #fff7ef;
+    color: darkorange;
+    border: 1px;
+    border-color: darkorange;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 2px;
+}
+button.disabled {
+    border: none;
+}
+.fas {
+    padding: 8px;
 }
