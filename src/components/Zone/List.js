@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { zoneListFetch, zoneDelFetch } from '../../actions';
+import ZoneThumbnail from './Thumbnail';
 
 
 class ZoneList extends React.Component {
@@ -24,7 +25,12 @@ class ZoneList extends React.Component {
         return(
             <div id='list-view'>
                 <div id='list-items'>
-                    {this.props.zones.map(dom=><div className='zones' key={dom}>{dom}<button value={dom} onClick={this.delete} disabled={isFetching}>X</button></div>)}
+                    {this.props.zones.map(dom=>
+                    <div className='zones' key={dom}>
+                        <ZoneThumbnail zone={dom} />
+                        <button value={dom} onClick={this.delete} disabled={isFetching}>X
+                        </button>
+                    </div>)}
                 </div>
                 <button onClick={this.refresh} disabled={isFetching} className="press press-orange press-ghost"><i className="fas fa-sync"></i>Refresh</button>
             </div>

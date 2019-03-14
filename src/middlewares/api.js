@@ -1,4 +1,14 @@
-import { ZONE_LIST_FETCH, ZONE_ADD_FETCH,ZONE_DEL_FETCH,zoneDel,zoneListRefresh,addZone,zoneNotFetching } from "../actions";
+import { 
+    ZONE_LIST_FETCH,
+    ZONE_ADD_FETCH,
+    ZONE_DEL_FETCH,
+    ZONE_GET_FETCH,
+    zoneDel,
+    zoneListRefresh,
+    addZone,
+    zoneGet,
+    zoneNotFetching
+} from "../actions";
 /*
 * Here we are catching fetch api and run action if need by the result of the api fetch
 *
@@ -78,6 +88,33 @@ const apiMiddleware = (store) => (next) => (action) => {
             return next(action);
             break;
 
+        case ZONE_GET_FETCH:
+            const requestGet = async() => {
+                console.log(`api middleware: getch information about ${action.zone}`);
+                const response = await fetch(`http://127.0.0.1:8000/api/zone/${action.zone}`,{method: 'GET',headers: API_HEADERS});
+                const body = await response.json();
+                switch (response.status) {
+                    case 200:
+                    case 201:
+                        //console.log('received response: ' + body);
+                        let getZoneAction = Object.assign({},zoneGet(action.zone,body));
+                        setTimeout(
+                            () => {store.dispatch(getZoneAction)}
+                            ,3000
+                            );
+                        break;
+                    case 404:
+                        console.log('zone not found, do nothink more');
+                        store.dispatch(zoneNotFetching());
+                        break;
+                    default:
+                        console.log(`Unable to get zone data ${body.message} code ${response.status}`);
+                        store.dispatch(zoneNotFetching());
+                }
+            }
+            requestGet();
+            return next(action);
+            break;
 
 
 
