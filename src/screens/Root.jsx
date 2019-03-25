@@ -11,7 +11,7 @@ const ScreensRoot = () => (
       <Switch>
         <Route path="/zone/list" component={ScreensZoneList} />
         <Route path="/zone/create" component={ScreensZoneForm} />
-        <Route path="/zone/:id" component={ScreensZoneForm} />
+        <Route path="/zone/:id" component={ScreensZoneEdit} />
         <Route path="/" component={App} />
       </Switch>
   </Router>
